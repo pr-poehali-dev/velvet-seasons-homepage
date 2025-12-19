@@ -12,121 +12,74 @@ const Index = () => {
   const [checkIn, setCheckIn] = useState<Date>();
   const [checkOut, setCheckOut] = useState<Date>();
   const [guests, setGuests] = useState(2);
+  const [rooms, setRooms] = useState(1);
 
   const quarters = [
     {
       id: 'ekaterininsky',
-      name: 'Екатерининский',
-      subtitle: 'Для взыскательных гостей',
-      description: 'Утончённая классика и безупречный сервис для тех, кто ценит роскошь в деталях',
+      name: 'Квартал «Екатерининский»',
+      subtitle: 'Премиальный формат',
+      description: 'Изысканность классической архитектуры в сочетании с безупречным сервисом. Авторская кухня, винный погреб и приватный SPA-комплекс.',
       image: 'https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/3f03bbf8-7d0f-496e-a338-ac9bc837732a.jpg',
-      tags: ['Премиум', 'Гастрономия', 'SPA', 'Для пар'],
-      gradient: 'from-purple-900 to-purple-600'
+      features: ['Винный бар', 'SPA-комплекс', 'Fine dining', 'Консьерж-сервис']
     },
     {
       id: 'family',
-      name: 'Семейный',
-      subtitle: 'Для самых важных путешествий',
-      description: 'Мир, где счастливы и дети, и родители. Пространство для незабываемых семейных моментов',
+      name: 'Квартал «Семейный»',
+      subtitle: 'Комфорт для всей семьи',
+      description: 'Просторные апартаменты, детский аквапарк, анимационные программы и семейные ужины. Всё для незабываемого семейного отдыха.',
       image: 'https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/ca737712-33e0-4f00-8acf-e113ab733445.jpg',
-      tags: ['Аквапарк', 'Анимация', 'Смежные номера', 'Детские клубы'],
-      gradient: 'from-orange-500 to-pink-500'
+      features: ['Аквапарк', 'Детская анимация', 'Игровые зоны', 'Семейные номера']
     },
     {
       id: 'sport',
-      name: 'Спортивный',
-      subtitle: 'Для активных и современных',
-      description: 'Энергия Кавказских гор. Динамичный отдых для тех, кто не представляет жизнь без движения',
+      name: 'Квартал «Спортивный»',
+      subtitle: 'Активный образ жизни',
+      description: 'Современный фитнес-центр, велосипедные маршруты, йога на рассвете с видом на горы. Энергия Кавказа в каждом дне.',
       image: 'https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/9f0b4163-dcb4-4d87-9257-0ae659055a8c.jpg',
-      tags: ['У гор', 'Фитнес', 'Экстрим', 'Эко-маршруты'],
-      gradient: 'from-blue-600 to-cyan-400'
+      features: ['Фитнес-центр', 'Горные маршруты', 'Спортивное питание', 'Персональные тренеры']
     }
   ];
 
-  const principles = [
+  const roomTypes = [
     {
-      icon: 'UserCheck',
-      title: 'Персонализация',
-      description: 'Выбор квартала под вашу цель отдыха'
+      type: 'Стандарт',
+      size: '28 м²',
+      price: 'от 8 500 ₽',
+      image: 'https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/9f0b4163-dcb4-4d87-9257-0ae659055a8c.jpg'
     },
     {
-      icon: 'Star',
-      title: 'Единство сервиса',
-      description: 'Безупречный стандарт во всех кварталах'
+      type: 'Комфорт',
+      size: '35 м²',
+      price: 'от 12 000 ₽',
+      image: 'https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/3f03bbf8-7d0f-496e-a338-ac9bc837732a.jpg'
     },
     {
-      icon: 'Sparkles',
-      title: 'Детали решают всё',
-      description: 'От постельного белья до организации экскурсий'
-    }
-  ];
-
-  const offers = [
-    {
-      title: 'Раннее бронирование на лето',
-      discount: '-25%',
-      description: 'Успейте забронировать номер с выгодой',
-      color: 'bg-gradient-to-r from-purple-600 to-purple-400'
-    },
-    {
-      title: 'Семейный пакет',
-      discount: 'Дети бесплатно',
-      description: 'Размещение детей в номере родителей',
-      color: 'bg-gradient-to-r from-orange-500 to-pink-500'
-    },
-    {
-      title: 'SPA-детокс неделя',
-      discount: 'От 45 000₽',
-      description: 'Программа оздоровления в Екатерининском',
-      color: 'bg-gradient-to-r from-indigo-600 to-purple-500'
-    }
-  ];
-
-  const steps = [
-    {
-      icon: 'MapPin',
-      title: 'Выберите квартал и номер',
-      description: 'Определите стиль отдыха'
-    },
-    {
-      icon: 'Calendar',
-      title: 'Оформите заявку онлайн',
-      description: 'Быстрое бронирование за 2 минуты'
-    },
-    {
-      icon: 'CheckCircle',
-      title: 'Получите подтверждение',
-      description: 'Мгновенное подтверждение и инструкции'
-    }
-  ];
-
-  const reviews = [
-    {
-      text: 'Отдыхали в Екатерининском — это настоящий уровень! Изысканная атмосфера, безупречный сервис.',
-      author: 'Анна',
-      city: 'Москва',
-      quarter: 'Екатерининский',
-      rating: 5
-    },
-    {
-      text: 'Семейный квартал — просто спасение для родителей. Дети счастливы, а мы наконец-то отдохнули!',
-      author: 'Игорь',
-      city: 'Санкт-Петербург',
-      quarter: 'Семейный',
-      rating: 5
-    },
-    {
-      text: 'Спортивный квартал превзошёл ожидания. Виды на горы, современный фитнес-центр — всё на высоте!',
-      author: 'Михаил',
-      city: 'Екатеринбург',
-      quarter: 'Спортивный',
-      rating: 5
+      type: 'Люкс',
+      size: '45 м²',
+      price: 'от 18 000 ₽',
+      image: 'https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/ca737712-33e0-4f00-8acf-e113ab733445.jpg'
     }
   ];
 
   return (
     <div className="min-h-screen bg-background">
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-12">
+            <h1 className="text-2xl font-bold tracking-wide">БАРХАТНЫЕ СЕЗОНЫ</h1>
+            <div className="hidden md:flex gap-8 text-sm">
+              <a href="#quarters" className="hover:text-primary transition-colors">Кварталы</a>
+              <a href="#rooms" className="hover:text-primary transition-colors">Номера</a>
+              <a href="#services" className="hover:text-primary transition-colors">Услуги</a>
+              <a href="#contact" className="hover:text-primary transition-colors">Контакты</a>
+            </div>
+          </div>
+          <Button variant="outline" size="sm">Личный кабинет</Button>
+        </div>
+      </nav>
+
+      <section className="relative h-[90vh] flex items-center justify-center mt-16">
         <div 
           className="absolute inset-0 z-0"
           style={{
@@ -135,35 +88,27 @@ const Index = () => {
             backgroundPosition: 'center'
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
 
-        <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
-          <div className="mb-8 inline-block">
-            <h1 className="text-7xl md:text-8xl font-bold tracking-tight mb-2">
-              Бархатные Сезоны
-            </h1>
-            <div className="h-1 w-32 mx-auto bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500" />
-          </div>
-
-          <h2 className="text-3xl md:text-5xl font-semibold mb-6 animate-fade-in">
-            Откройте свой идеальный отдых в Сочи
+        <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
+          <h2 className="text-5xl md:text-7xl font-light mb-6 tracking-wide">
+            Город-отель премиум класса
           </h2>
-          
-          <p className="text-xl md:text-2xl mb-12 text-white/90 font-light">
-            Три уникальных квартала, одна безупречная философия гостеприимства
+          <p className="text-xl md:text-2xl mb-12 font-light opacity-90">
+            Три уникальных квартала. Один высочайший стандарт сервиса
           </p>
 
-          <Card className="max-w-4xl mx-auto bg-white/95 backdrop-blur-sm shadow-2xl">
-            <CardContent className="p-6">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <Card className="max-w-5xl mx-auto bg-white shadow-2xl">
+            <CardContent className="p-8">
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
                 <div className="md:col-span-1">
-                  <label className="text-sm font-medium text-foreground/70 mb-2 block">Заезд</label>
+                  <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block font-semibold">Заезд</label>
                   <Popover>
                     <PopoverTrigger asChild>
-                      <Button variant="outline" className="w-full justify-start text-left font-normal">
+                      <Button variant="outline" className="w-full justify-start text-left font-light">
                         <Icon name="Calendar" className="mr-2 h-4 w-4" />
-                        {checkIn ? format(checkIn, 'dd MMM', { locale: ru }) : 'Выберите дату'}
+                        {checkIn ? format(checkIn, 'dd.MM.yyyy', { locale: ru }) : 'Дата'}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0">
@@ -173,12 +118,12 @@ const Index = () => {
                 </div>
 
                 <div className="md:col-span-1">
-                  <label className="text-sm font-medium text-foreground/70 mb-2 block">Выезд</label>
+                  <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block font-semibold">Выезд</label>
                   <Popover>
                     <PopoverTrigger asChild>
                       <Button variant="outline" className="w-full justify-start text-left font-normal">
                         <Icon name="Calendar" className="mr-2 h-4 w-4" />
-                        {checkOut ? format(checkOut, 'dd MMM', { locale: ru }) : 'Выберите дату'}
+                        {checkOut ? format(checkOut, 'dd.MM.yyyy', { locale: ru }) : 'Дата'}
                       </Button>
                     </PopoverTrigger>
                     <PopoverContent className="w-auto p-0">
@@ -188,364 +133,420 @@ const Index = () => {
                 </div>
 
                 <div className="md:col-span-1">
-                  <label className="text-sm font-medium text-foreground/70 mb-2 block">Гостей</label>
+                  <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block font-semibold">Номера</label>
                   <Input 
                     type="number" 
                     min="1" 
+                    max="10"
+                    value={rooms} 
+                    onChange={(e) => setRooms(parseInt(e.target.value))}
+                    className="w-full font-light"
+                  />
+                </div>
+
+                <div className="md:col-span-1">
+                  <label className="text-xs uppercase tracking-wider text-muted-foreground mb-2 block font-semibold">Гостей</label>
+                  <Input 
+                    type="number" 
+                    min="1" 
+                    max="20"
                     value={guests} 
                     onChange={(e) => setGuests(parseInt(e.target.value))}
-                    className="w-full"
+                    className="w-full font-light"
                   />
                 </div>
 
                 <div className="md:col-span-1 flex items-end">
-                  <Button className="w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white font-semibold h-10">
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white h-10">
                     Найти номер
                   </Button>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center gap-6 pt-4 border-t text-sm text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <Icon name="Shield" className="h-4 w-4" />
+                  <span>Безопасная оплата</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Check" className="h-4 w-4" />
+                  <span>Мгновенное подтверждение</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Icon name="Clock" className="h-4 w-4" />
+                  <span>Поддержка 24/7</span>
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
-
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <Icon name="ChevronDown" className="h-8 w-8 text-white" />
-        </div>
       </section>
 
-      <section className="py-24 px-4 bg-gradient-to-b from-background to-muted">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Выберите свой бархатный сезон
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Три независимых отеля в одной концепции. Найдите отдых, который говорит именно с вами
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {quarters.map((quarter, index) => (
-              <Card 
-                key={quarter.id}
-                className="group overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="relative h-80 overflow-hidden">
-                  <img 
-                    src={quarter.image} 
-                    alt={quarter.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className={`absolute inset-0 bg-gradient-to-t ${quarter.gradient} opacity-60 group-hover:opacity-70 transition-opacity`} />
-                  <div className="absolute top-4 right-4 flex flex-wrap gap-2 justify-end">
-                    {quarter.tags.slice(0, 2).map((tag) => (
-                      <span key={tag} className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <CardContent className="p-6">
-                  <h3 className="text-3xl font-bold mb-2">{quarter.name}</h3>
-                  <p className="text-sm font-semibold text-primary mb-4">{quarter.subtitle}</p>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    {quarter.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {quarter.tags.map((tag) => (
-                      <span key={tag} className="px-3 py-1 bg-muted text-xs font-medium rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <Button className="w-full group/btn" variant="outline">
-                    Исследовать квартал
-                    <Icon name="ArrowRight" className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 px-4 bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-400 rounded-full blur-3xl" />
-        </div>
-
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Философия идеального отдыха
-            </h2>
-            <p className="text-xl text-white/90 max-w-4xl mx-auto leading-relaxed">
-              Мы объединили три независимых отеля в одну экосистему, чтобы каждый гость нашёл своё — 
-              от уединённой роскоши до бурного веселья. Наш принцип: внимание к деталям, которые создают ваш идеальный день
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-            {principles.map((principle, index) => (
-              <div 
-                key={index}
-                className="text-center p-8 rounded-2xl bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
-              >
-                <div className="w-20 h-20 mx-auto mb-6 bg-white/20 rounded-full flex items-center justify-center">
-                  <Icon name={principle.icon} className="h-10 w-10" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">{principle.title}</h3>
-                <p className="text-white/80">{principle.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Моменты, которые остаются с вами
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Вдохновитесь атмосферой наших кварталов
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {quarters.map((quarter) => (
-              <div 
-                key={quarter.id}
-                className="relative h-64 md:h-80 rounded-2xl overflow-hidden group cursor-pointer"
-              >
-                <img 
-                  src={quarter.image} 
-                  alt={quarter.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <p className="font-semibold text-lg">{quarter.name}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="group">
-              Смотреть все фото и видео
-              <Icon name="Image" className="ml-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 px-4 bg-muted">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Ваш выгодный сезон
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Специальные предложения для незабываемого отдыха
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {offers.map((offer, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-shadow">
-                <div className={`${offer.color} p-8 text-white`}>
-                  <div className="text-4xl font-bold mb-2">{offer.discount}</div>
-                  <h3 className="text-2xl font-bold mb-2">{offer.title}</h3>
-                </div>
-                <CardContent className="p-6">
-                  <p className="text-muted-foreground mb-6">{offer.description}</p>
-                  <Button className="w-full">
-                    Узнать подробнее
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-24 px-4">
+      <section className="py-24 px-4 bg-muted" id="about">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Начните отдых в три шага
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Простой процесс бронирования
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {steps.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="relative mb-8">
-                  <div className="w-24 h-24 mx-auto bg-gradient-to-br from-purple-600 to-purple-400 rounded-full flex items-center justify-center shadow-lg">
-                    <Icon name={step.icon} className="h-12 w-12 text-white" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-light mb-6 leading-tight">
+                Выберите формат своего идеального отдыха
+              </h2>
+              <p className="text-lg leading-relaxed mb-8 text-muted-foreground">
+                «Бархатные Сезоны» — это уникальная концепция города-отеля, объединяющая три независимых квартала. 
+                Каждый из них создан для определённого стиля отдыха, но все они следуют единому стандарту премиального сервиса.
+              </p>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Icon name="Building2" className="h-6 w-6 text-primary" />
                   </div>
-                  <div className="absolute -top-2 -right-2 w-12 h-12 bg-accent rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                    {index + 1}
+                  <div>
+                    <h4 className="font-semibold mb-1">428 номеров премиум класса</h4>
+                    <p className="text-sm text-muted-foreground">От стандарта до панорамных люксов</p>
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
-                <p className="text-muted-foreground">{step.description}</p>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Icon name="MapPin" className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Первая линия в Сочи</h4>
+                    <p className="text-sm text-muted-foreground">10 минут до центра, 5 минут до канатной дороги</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Icon name="Star" className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold mb-1">Персонализированный сервис</h4>
+                    <p className="text-sm text-muted-foreground">Консьерж 24/7, индивидуальные программы отдыха</p>
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Button size="lg" className="bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600">
-              Подобрать номер
-              <Icon name="Search" className="ml-2 h-5 w-5" />
-            </Button>
+              <Button size="lg" className="mt-8 bg-primary hover:bg-primary/90">
+                Забронировать тур
+                <Icon name="ArrowRight" className="ml-2 h-5 w-5" />
+              </Button>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <img 
+                src="https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/3f03bbf8-7d0f-496e-a338-ac9bc837732a.jpg" 
+                alt="Interior"
+                className="w-full h-64 object-cover rounded-lg shadow-lg"
+              />
+              <img 
+                src="https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/ca737712-33e0-4f00-8acf-e113ab733445.jpg" 
+                alt="Pool"
+                className="w-full h-64 object-cover rounded-lg shadow-lg mt-8"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 px-4 bg-gradient-to-b from-muted to-background">
+      <section className="py-24 px-4" id="quarters">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Гости о своих «Бархатных сезонах»
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Реальные отзывы наших гостей
+            <p className="text-sm uppercase tracking-widest text-primary mb-4 font-semibold">Три концепции отдыха</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-6">Выберите свой квартал</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Каждый квартал — самостоятельный отель со своей философией и атмосферой
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {reviews.map((review, index) => (
-              <Card key={index} className="hover:shadow-xl transition-shadow">
-                <CardContent className="p-8">
-                  <div className="flex mb-4">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Icon key={i} name="Star" className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                    ))}
-                  </div>
-                  <p className="text-lg mb-6 leading-relaxed">"{review.text}"</p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-semibold">{review.author}</p>
-                      <p className="text-sm text-muted-foreground">{review.city}</p>
+          <div className="space-y-12">
+            {quarters.map((quarter, index) => (
+              <Card key={quarter.id} className="overflow-hidden hover:shadow-2xl transition-shadow">
+                <div className={`grid grid-cols-1 ${index % 2 === 0 ? 'md:grid-cols-2' : 'md:grid-cols-2'} gap-0`}>
+                  {index % 2 === 0 && (
+                    <div className="relative h-96 md:h-full">
+                      <img 
+                        src={quarter.image} 
+                        alt={quarter.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <span className="px-3 py-1 bg-primary/10 text-primary text-xs font-medium rounded-full">
-                      {review.quarter}
-                    </span>
-                  </div>
-                </CardContent>
+                  )}
+                  <CardContent className="p-12 flex flex-col justify-center">
+                    <p className="text-sm uppercase tracking-widest text-primary mb-3 font-semibold">{quarter.subtitle}</p>
+                    <h3 className="text-3xl md:text-4xl font-light mb-6">{quarter.name}</h3>
+                    <p className="text-lg leading-relaxed mb-8 text-muted-foreground">
+                      {quarter.description}
+                    </p>
+                    <div className="grid grid-cols-2 gap-4 mb-8">
+                      {quarter.features.map((feature, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          <span className="text-sm">{feature}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex gap-4">
+                      <Button className="bg-primary hover:bg-primary/90">
+                        Подробнее о квартале
+                      </Button>
+                      <Button variant="outline">
+                        Выбрать номер
+                      </Button>
+                    </div>
+                  </CardContent>
+                  {index % 2 !== 0 && (
+                    <div className="relative h-96 md:h-full">
+                      <img 
+                        src={quarter.image} 
+                        alt={quarter.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                </div>
               </Card>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 px-4">
+      <section className="py-24 px-4 bg-muted" id="rooms">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              Ждём вас в Сочи
-            </h2>
-            <p className="text-xl text-muted-foreground">
-              Город-отель «Бархатные Сезоны»
+            <p className="text-sm uppercase tracking-widest text-primary mb-4 font-semibold">Номерной фонд</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-6">Категории номеров</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              От комфортабельных стандартов до панорамных люксов с видом на горы
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-            <div className="bg-muted rounded-2xl h-96 flex items-center justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {roomTypes.map((room, index) => (
+              <Card key={index} className="overflow-hidden group hover:shadow-2xl transition-all">
+                <div className="relative h-72 overflow-hidden">
+                  <img 
+                    src={room.image} 
+                    alt={room.type}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <CardContent className="p-8">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-2xl font-light mb-2">{room.type}</h3>
+                      <p className="text-sm text-muted-foreground">{room.size}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-2xl font-semibold text-primary">{room.price}</p>
+                      <p className="text-xs text-muted-foreground">за ночь</p>
+                    </div>
+                  </div>
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center gap-2 text-sm">
+                      <Icon name="Wifi" className="h-4 w-4 text-muted-foreground" />
+                      <span>Wi-Fi</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Icon name="Tv" className="h-4 w-4 text-muted-foreground" />
+                      <span>Smart TV</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <Icon name="Bath" className="h-4 w-4 text-muted-foreground" />
+                      <span>Премиальная косметика</span>
+                    </div>
+                  </div>
+                  <Button className="w-full bg-primary hover:bg-primary/90">
+                    Забронировать
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg" variant="outline">
+              Посмотреть все категории номеров
+              <Icon name="ArrowRight" className="ml-2 h-5 w-5" />
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-4" id="services">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-widest text-primary mb-4 font-semibold">Инфраструктура</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-6">Услуги и сервисы</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Card className="p-8 text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                <Icon name="UtensilsCrossed" className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-light mb-3">Рестораны и бары</h3>
+              <p className="text-muted-foreground mb-4">5 ресторанов авторской кухни, винный погреб, лобби-бар</p>
+              <Button variant="link" className="text-primary">Меню ресторанов →</Button>
+            </Card>
+
+            <Card className="p-8 text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                <Icon name="Waves" className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-light mb-3">SPA & Wellness</h3>
+              <p className="text-muted-foreground mb-4">Spa-комплекс площадью 2000 м², хаммам, сауны, массажные кабинеты</p>
+              <Button variant="link" className="text-primary">SPA-меню →</Button>
+            </Card>
+
+            <Card className="p-8 text-center hover:shadow-xl transition-shadow">
+              <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
+                <Icon name="Dumbbell" className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-light mb-3">Спорт и активности</h3>
+              <p className="text-muted-foreground mb-4">Фитнес-центр, аквапарк, теннисные корты, горные маршруты</p>
+              <Button variant="link" className="text-primary">Узнать больше →</Button>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-4 bg-primary text-white">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-light mb-8">Остались вопросы?</h2>
+          <p className="text-xl mb-12 opacity-90">Заполните форму, и наш менеджер свяжется с вами в течение 15 минут</p>
+          
+          <Card className="max-w-3xl mx-auto">
+            <CardContent className="p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <Input placeholder="Ваше имя" className="font-light" />
+                <Input placeholder="Телефон" className="font-light" />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                <Input placeholder="Email" type="email" className="font-light" />
+                <Input placeholder="Дата заезда" className="font-light" />
+              </div>
+              <textarea 
+                placeholder="Комментарий или вопрос"
+                className="w-full p-3 border rounded-lg mb-4 font-light"
+                rows={4}
+              />
+              <Button size="lg" className="w-full bg-foreground hover:bg-foreground/90 text-white">
+                Отправить заявку
+              </Button>
+              <p className="text-xs text-muted-foreground mt-4">
+                Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
+      <section className="py-24 px-4" id="contact">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-widest text-primary mb-4 font-semibold">Контакты</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-6">Мы всегда рады гостям</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="bg-muted h-96 rounded-lg flex items-center justify-center">
               <div className="text-center">
                 <Icon name="MapPin" className="h-16 w-16 text-primary mx-auto mb-4" />
-                <p className="text-lg font-semibold">Интерактивная карта</p>
-                <p className="text-muted-foreground">Все три квартала на карте</p>
+                <p className="text-lg font-semibold">г. Сочи, Курортный проспект</p>
               </div>
             </div>
 
             <div className="space-y-8">
               <div>
-                <h3 className="text-2xl font-bold mb-4">Контактная информация</h3>
+                <h3 className="text-xl font-light mb-6">Свяжитесь с нами</h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
-                    <Icon name="MapPin" className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <Icon name="Phone" className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold">Адрес</p>
-                      <p className="text-muted-foreground">г. Сочи, курортный комплекс «Бархатные Сезоны»</p>
+                      <p className="font-semibold mb-1">Телефон</p>
+                      <p className="text-muted-foreground">+7 (800) 123-45-67 (звонок бесплатный)</p>
+                      <p className="text-muted-foreground">+7 (862) 234-56-78</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <Icon name="Phone" className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <Icon name="Mail" className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold">Единый call-центр</p>
-                      <p className="text-muted-foreground">+7 (800) 123-45-67</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <Icon name="Mail" className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
-                    <div>
-                      <p className="font-semibold">Email</p>
+                      <p className="font-semibold mb-1">Email</p>
+                      <p className="text-muted-foreground">reservations@velvet-seasons.ru</p>
                       <p className="text-muted-foreground">info@velvet-seasons.ru</p>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-4">
-                    <Icon name="Clock" className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
+                    <Icon name="Clock" className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                     <div>
-                      <p className="font-semibold">Режим работы</p>
-                      <p className="text-muted-foreground">Круглосуточно, без выходных</p>
+                      <p className="font-semibold mb-1">Режим работы</p>
+                      <p className="text-muted-foreground">Круглосуточно, 7 дней в неделю</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="border-t pt-6">
-                <h4 className="font-semibold mb-4">Расположение кварталов:</h4>
-                <div className="space-y-3">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-purple-600 rounded-full" />
-                    <p className="text-sm"><span className="font-semibold">Екатерининский</span> — центральная часть комплекса</p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-orange-500 rounded-full" />
-                    <p className="text-sm"><span className="font-semibold">Семейный</span> — рядом с аквапарком и пляжем</p>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-blue-600 rounded-full" />
-                    <p className="text-sm"><span className="font-semibold">Спортивный</span> — 5 минут до канатной дороги</p>
-                  </div>
+              <div className="pt-6 border-t">
+                <h4 className="font-semibold mb-4">Кварталы комплекса:</h4>
+                <div className="space-y-3 text-sm">
+                  <p><span className="font-semibold">Екатерининский</span> — центральная часть, корпус А</p>
+                  <p><span className="font-semibold">Семейный</span> — южное крыло, корпуса Б и В</p>
+                  <p><span className="font-semibold">Спортивный</span> — северное крыло, корпус Г</p>
                 </div>
               </div>
 
-              <Button size="lg" className="w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600">
-                Связаться с нами
-                <Icon name="Send" className="ml-2 h-5 w-5" />
+              <Button size="lg" className="w-full bg-primary hover:bg-primary/90">
+                Заказать обратный звонок
+                <Icon name="Phone" className="ml-2 h-5 w-5" />
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="bg-gradient-to-br from-purple-900 via-purple-800 to-indigo-900 text-white py-12 px-4">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4">Бархатные Сезоны</h2>
-          <p className="text-white/80 mb-6">Ваш идеальный отдых в Сочи</p>
-          <div className="flex justify-center gap-6 mb-6">
-            <Icon name="Instagram" className="h-6 w-6 cursor-pointer hover:scale-110 transition-transform" />
-            <Icon name="Facebook" className="h-6 w-6 cursor-pointer hover:scale-110 transition-transform" />
-            <Icon name="Youtube" className="h-6 w-6 cursor-pointer hover:scale-110 transition-transform" />
+      <footer className="bg-foreground text-white py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <div>
+              <h3 className="text-xl font-bold mb-4">БАРХАТНЫЕ СЕЗОНЫ</h3>
+              <p className="text-sm text-white/70">Город-отель премиум класса в самом сердце Сочи</p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">Кварталы</h4>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li>Екатерининский</li>
+                <li>Семейный</li>
+                <li>Спортивный</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">Услуги</h4>
+              <ul className="space-y-2 text-sm text-white/70">
+                <li>Рестораны</li>
+                <li>SPA & Wellness</li>
+                <li>Конференц-залы</li>
+                <li>Экскурсии</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4 text-sm uppercase tracking-wider">Подписаться</h4>
+              <div className="flex gap-2 mb-4">
+                <Input placeholder="Email" className="bg-white/10 border-white/20 text-white placeholder:text-white/50" />
+                <Button className="bg-primary hover:bg-primary/90">
+                  <Icon name="Send" className="h-4 w-4" />
+                </Button>
+              </div>
+              <div className="flex gap-4">
+                <Icon name="Instagram" className="h-5 w-5 cursor-pointer hover:text-primary transition-colors" />
+                <Icon name="Facebook" className="h-5 w-5 cursor-pointer hover:text-primary transition-colors" />
+                <Icon name="Youtube" className="h-5 w-5 cursor-pointer hover:text-primary transition-colors" />
+              </div>
+            </div>
           </div>
-          <p className="text-sm text-white/60">© 2024 Бархатные Сезоны. Все права защищены.</p>
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-white/60">
+            <p>© 2024 Бархатные Сезоны. Все права защищены</p>
+            <div className="flex gap-6 mt-4 md:mt-0">
+              <a href="#" className="hover:text-white transition-colors">Политика конфиденциальности</a>
+              <a href="#" className="hover:text-white transition-colors">Публичная оферта</a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
