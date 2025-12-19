@@ -62,6 +62,33 @@ const Index = () => {
     }
   ];
 
+  const offers = [
+    {
+      title: 'Раннее бронирование',
+      discount: '−25%',
+      description: 'Забронируйте номер на лето 2025 и получите скидку до 25%',
+      validUntil: 'до 31 марта',
+      image: 'https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/9f0b4163-dcb4-4d87-9257-0ae659055a8c.jpg',
+      badge: 'Хит'
+    },
+    {
+      title: 'Семейный отдых',
+      discount: 'Дети бесплатно',
+      description: 'Размещение детей до 12 лет в номере с родителями без доплаты',
+      validUntil: 'круглый год',
+      image: 'https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/ca737712-33e0-4f00-8acf-e113ab733445.jpg',
+      badge: 'Популярно'
+    },
+    {
+      title: 'SPA-релакс',
+      discount: 'от 45 000 ₽',
+      description: 'Недельная программа оздоровления с процедурами и питанием',
+      validUntil: 'ограниченное количество',
+      image: 'https://cdn.poehali.dev/projects/dfe9d619-8ec4-4627-bcaa-ba364d706b54/files/3f03bbf8-7d0f-496e-a338-ac9bc837732a.jpg',
+      badge: 'Новинка'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <nav className="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-sm z-50">
@@ -71,6 +98,7 @@ const Index = () => {
             <div className="hidden md:flex gap-8 text-sm">
               <a href="#quarters" className="hover:text-primary transition-colors">Кварталы</a>
               <a href="#rooms" className="hover:text-primary transition-colors">Номера</a>
+              <a href="#offers" className="hover:text-primary transition-colors">Акции</a>
               <a href="#services" className="hover:text-primary transition-colors">Услуги</a>
               <a href="#contact" className="hover:text-primary transition-colors">Контакты</a>
             </div>
@@ -401,6 +429,61 @@ const Index = () => {
               <p className="text-muted-foreground mb-4">Фитнес-центр, аквапарк, теннисные корты, горные маршруты</p>
               <Button variant="link" className="text-primary">Узнать больше →</Button>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-4 bg-gradient-to-br from-primary/5 to-secondary/10" id="offers">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <p className="text-sm uppercase tracking-widest text-primary mb-4 font-semibold">Специальные предложения</p>
+            <h2 className="text-4xl md:text-5xl font-light mb-6">Выгодные акции</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Забронируйте отдых по специальной цене и получите дополнительные привилегии
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {offers.map((offer, index) => (
+              <Card key={index} className="overflow-hidden group hover:shadow-2xl transition-all">
+                <div className="relative h-64 overflow-hidden">
+                  <img 
+                    src={offer.image} 
+                    alt={offer.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 right-4">
+                    <span className="px-4 py-2 bg-primary text-white text-xs font-semibold rounded-full shadow-lg">
+                      {offer.badge}
+                    </span>
+                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <p className="text-4xl font-bold mb-1">{offer.discount}</p>
+                  </div>
+                </div>
+                <CardContent className="p-6">
+                  <h3 className="text-2xl font-light mb-3">{offer.title}</h3>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
+                    {offer.description}
+                  </p>
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+                    <Icon name="Clock" className="h-4 w-4" />
+                    <span>Действует {offer.validUntil}</span>
+                  </div>
+                  <Button className="w-full bg-primary hover:bg-primary/90">
+                    Забронировать со скидкой
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Button size="lg" variant="outline">
+              Посмотреть все акции
+              <Icon name="Gift" className="ml-2 h-5 w-5" />
+            </Button>
           </div>
         </div>
       </section>
